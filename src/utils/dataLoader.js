@@ -40,4 +40,5 @@ export async function loadAllData() {
         players,
         records,
     };
+    
 }
