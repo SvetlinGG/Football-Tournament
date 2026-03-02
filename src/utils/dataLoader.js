@@ -1,3 +1,8 @@
+import matchesRaw from '../data/matches.csv?raw';
+import teamsRaw from '../data/teams.csv?raw';
+import playersRaw from '../data/players.csv?raw';
+import recordsRaw from '../data/records.csv?raw';
+
 
 function parseCSV(text){
     const lines = text.trim().split('\n');
@@ -15,3 +20,24 @@ function parseCSV(text){
     });
 }
 
+export async function loadAllData() {
+    
+    const teams = parseCSV(teamsRaw);
+    const players = parseCSV(playersRaw);
+    const matches = parseCSV(matchesRaw).map(m => ({
+        ...m,
+        Date: m.Date ? new Date(m.Date) : null,
+    }));
+    const records = parseCSV(recordsRaw).map(r => ({
+        ...r,
+        fromMinutes: r.fromMinutes ? Number(r.fromMinutes) : 0,
+        toMinutes: r.toMinutes !== null ? Number(r.toMinutes) : 90,
+    }));
+
+    return {
+        teams,
+        matches,
+        players,
+        records,
+    };
+}
