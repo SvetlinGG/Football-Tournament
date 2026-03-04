@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { TournamentContext } from '../../context/TournamentContext';
 import { Link } from "react-router-dom";
+import './MatchCard.module.css';
 
 export default function MatchCard({match}){
 
@@ -34,3 +35,12 @@ export default function MatchCard({match}){
         </Link>
     );
 }
+
+function formatDate(date) {
+    if (!date || isNaN(date)) return 'Date unknown';
+    return date.toLocaleDateString('en-EN', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    });
+  }
