@@ -1,11 +1,11 @@
-import { useContext } from "react";
-import { TournamentContext } from '../../context/TournamentContext';
+
+import { useTournamentContext } from '../../context/TournamentContext';
 import { Link } from "react-router-dom";
-import './MatchCard.module.css';
+import styles from './MatchCard.module.css';
 
 export default function MatchCard({match}){
 
-    const {teams} = useContext(TournamentContext);
+    const {teams} = useTournamentContext();
 
     if (!match) return null;
 
@@ -16,20 +16,20 @@ export default function MatchCard({match}){
     const score = match.Score || '- : -';
 
     return (
-        <Link to={`/match/${match.ID}`} className="match-card" >
-            <div className="match-date" >{formatDate(match.Date)}</div>
+        <Link to={`/match/${match.ID}`} className={styles['match-card']} >
+            <div className={styles['match-date']} >{formatDate(match.Date)}</div>
 
-            <div className="match-teams" >
-                <div className="team home" >
-                    <span className="team-name" >{getTeamName(teamA)}</span>
+            <div className={styles['match-teams']} >
+                <div className={styles.team} >
+                    <span className={styles['team-name']} >{getTeamName(teamA)}</span>
                 </div>
 
-                <div className="score" >
+                <div className={styles.score} >
                     {score}
                 </div>
 
-                <div className="team away" >
-                    <span className="team-name" >{getTeamName(teamB)}</span>
+                <div className={styles.team} >
+                    <span className={styles['team-name']} >{getTeamName(teamB)}</span>
                 </div>
             </div>
         </Link>

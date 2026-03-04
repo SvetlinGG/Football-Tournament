@@ -1,19 +1,19 @@
-import { useContext } from "react";
-import { TournamentContext } from "../context/TournamentContext";
+
+import { useTournamentContext } from "../context/TournamentContext";
 import MatchCard from '../components/MatchCard/MatchCard';
-import './Home.module.css';
+import styles from './Home.module.css';
 
 
 export default function Home(){
 
-    const {matches, loading, error} = useContext(TournamentContext);
+    const {matches, loading, error} = useTournamentContext();
 
     if ( loading) {
-        return <div className="loading" >Loading matches...</div>;
+        return <div className={styles.loading} >Loading matches...</div>;
     }
 
     if ( error) {
-        return <div className="error" >Error...</div>;
+        return <div className={styles.error} >Error...</div>;
     }
 
     const sortedMatches = [...matches].sort((a, b) => {
@@ -21,17 +21,17 @@ export default function Home(){
     });
 
     return (
-        <div className="home-page" >
+        <div className={styles['home-page']} >
             <h1>European Football Championship 2024</h1>
             <h2>All matches</h2>
 
             {sortedMatches.length === 0 ? (
                 <p>No matches loaded.</p>
             ) : (
-                <div className="matches-list" >
-                    {sortedMatches.map(match => {
+                <div className={styles['matches-list']} >
+                    {sortedMatches.map(match => (
                         <MatchCard key={match.ID} match={match} />
-                    })}
+                    ))}
                 </div>
             )}
         </div>

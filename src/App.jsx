@@ -1,8 +1,10 @@
 
-import { useState, useEffect, createContext } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { loadAllData } from './utils/dataLoader';
+
+import { TournamentProvider } from './context/TournamentContext';
 
 import Header from './components/common/Header';
 import Home from './pages/Home';
@@ -10,15 +12,6 @@ import MatchPage from './pages/MatchPage';
 import TeamPage from './pages/TeamPage';
 
 import './App.css';
-
-export const TournamentContext = createContext({
-  teams: [],
-  matches: [],
-  players: [],
-  records: [],
-  loading: true,
-  error: null,
-});
 
 function App() {
   const [data, setData] = useState({
@@ -51,7 +44,7 @@ function App() {
   }, []);
 
   return (
-    <TournamentContext.Provider value={data}>
+    <TournamentProvider value={data}>
       <BrowserRouter>
         <div className="app-container">
           <Header />
@@ -70,7 +63,7 @@ function App() {
           </main>
         </div>
       </BrowserRouter>
-    </TournamentContext.Provider>
+    </TournamentProvider>
   );
 }
 
