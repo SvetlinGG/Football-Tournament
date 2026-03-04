@@ -1,0 +1,40 @@
+
+.home-page {
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #1a3c5e;
+    margin-bottom: 8px;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #444;
+    margin-bottom: 24px;
+  }
+  
+  .matches-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  @media (min-width: 600px) {
+    .matches-list {
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+  }
+  
+  .loading, .error {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2rem;
+  }
+  
+  .error {
+    color: #d32f2f;
+  }
